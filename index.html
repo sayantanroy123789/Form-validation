@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>CREATE YOUR ACCOUNT</h2>
+    <form>
+      <div class="name">
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Enter your name" />
+      </div>
+      <div class="email">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email id" />
+      </div>
+      <div class="password">
+        <label>Set Password</label>
+        <input type="password" id="password" placeholder="Set a password" />
+      </div>
+      <div class="confirm_password">
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          id="confirm_password"
+          placeholder="Confirm your password"
+        />
+      </div>
+      <input class="button" type="submit" value="Create" id="button" />
+    </form>
+    <table id="table">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Confirm Password</th>
+      </tr>
+      <tr id="data"></tr>
+    </table>
+    <script>
+      let button = document.getElementById("button");
+
+      let InputName = document.getElementById("name");
+      let InputEmail = document.getElementById("email");
+      let InputPass = document.getElementById("password");
+      let InputconfirmPass = document.getElementById("confirm_password");
+
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let name = InputName.value;
+        let email = InputEmail.value;
+        let pass = InputPass.value;
+        let confirmPass = InputconfirmPass.value;
+
+        if (name == 0 || email == 0 || pass == 0 || confirmPass == 0) {
+          alert("please Fill Form");
+          return;
+        }
+
+        if (pass !== confirmPass) {
+          alert("password must be same");
+          return;
+        }
+
+        let table = document.getElementById("table");
+        table.style.display = "block";
+
+        let data = document.getElementById("data");
+        data.innerHTML = `
+   <td> ${name} </td>
+   <td> ${email} </td>
+   <td> ${pass} </td>
+   <td> ${confirmPass} </td>`;
+
+        InputName.value = "";
+        InputEmail.value = "";
+        InputPass.value = "";
+        InputconfirmPass.value = "";
+      });
+    </script>
+  </body>
+</html>
